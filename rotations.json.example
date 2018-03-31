@@ -3,7 +3,28 @@
     {
         "map":
         {
-            "priority": 0
+            "priority": 2,
+            "string": "map \"{}\""
+        },
+        "g_authenticity":
+        {
+            "priority": 1,
+            "string": "g_authenticity \"{}\""
+        },
+        "mbmode":
+        {
+            "priority": 1,
+            "string": "mbmode \"{}\""
+        },
+        "fraglimit":
+        {
+            "priority": 3,
+            "string": "fraglimit \"{}\""
+        },
+        "map_restart_mb":
+        {
+            "priority": "end",
+            "string": "map_restart_mb"
         }
     },
     "rotations":
