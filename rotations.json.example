@@ -1,0 +1,27 @@
+{
+    "commands":
+    {
+        "map":
+        {
+            "priority": 0
+        }
+    },
+    "rotations":
+    {
+        "large":
+        {
+            "name": "large",
+            "shorthand": "ORD",
+            "maps":
+            [
+                {
+                    "map": "mb2_corellia",
+                    "g_authenticity": 0,
+                    "mbmode": 0,
+                    "fraglimit": 12,
+                    "map_restart_mb": true
+                }
+            ]
+        }
+    }
+}
