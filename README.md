@@ -13,6 +13,12 @@ This section explains the different parts of the json configuration file
     // This section defines what commands the configuration generator will be able to interpret
     "commands":
     {
+        // These are default values that will be added to each command should they not be present
+        "defaults":
+        {
+            "server-command": false,
+            "requires-set": false
+        },
         // Each command's name is that which it will be in the cfg line
         "map":
         {
@@ -57,6 +63,32 @@ This section explains the different parts of the json configuration file
 
             // True denotes a command that has no value and will either exist or not exist
             "default": true
+        },
+
+        // There are some commands which are run before a rotation starts,
+        // these are donated by the server-command variable being true.
+        "sv_hostname":
+        {
+            "server-command": true,
+
+            // This denotes whether set has to precede the command
+            "requires-set": true,
+            "string": "set sv_hostname \"{}\"",
+            "default": "^4/^5/ ^7Resurgence RTV^4/RTM"
+        },
+        "g_hidehudfromspecs":
+        {
+            "server-command": true,
+            "requires-set": true,
+            "string": "set g_hidehudfromspecs \"{}\"",
+            "default": 1
+        },
+        "g_password":
+        {
+            "server-command": true,
+            "requires-set": true,
+            "string": "set g_password \"{}\"",
+            "default": "none"
         }
     },
     // This holds the different rotation profiles, each profile will be a rotation the server can be set to
@@ -65,8 +97,6 @@ This section explains the different parts of the json configuration file
         // Each profile will have a name
         "large":
         {
-            "name": "large",
-
             // The shorthand is the name of the vstr that this rotation will have
             "shorthand": "ORD",
 
