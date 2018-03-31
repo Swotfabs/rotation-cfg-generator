@@ -8,7 +8,7 @@ You must create a rotations.json file as the script will be expecting that.
 ### Json File Format
 This section explains the different parts of the json configuration file
 
-```json
+```
 {
     // This section defines what commands the configuration generator will be able to interpret
     "commands":
