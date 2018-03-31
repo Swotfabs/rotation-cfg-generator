@@ -1,6 +1,11 @@
 {
     "commands":
     {
+        "default_attributes":
+        {
+            "server-command": false,
+            "requires-set": false
+        },
         "map":
         {
             "priority": 2,
@@ -30,13 +35,36 @@
             "priority": "end",
             "string": "map_restart_mb",
             "default": true
+        },
+        "sv_hostname":
+        {
+            "server-command": true,
+            "requires-set": true,
+            "string": "set sv_hostname \"{}\"",
+            "default": "^4/^5/ ^7Resurgence RTV^4/RTM"
+        },
+        "g_hidehudfromspecs":
+        {
+            "server-command": true,
+            "requires-set": true,
+            "string": "set g_hidehudfromspecs \"{}\"",
+            "default": 1
+        },
+        "g_password":
+        {
+            "server-command": true,
+            "requires-set": true,
+            "string": "set g_password \"{}\"",
+            "default": "none"
         }
     },
-    "rotations":
+    "profiles":
     {
         "large":
         {
-            "name": "large",
+            "sv_hostname": "^4/^5/ ^7Resurgence RTV^4/RTM",
+            "g_hidehudfromspecs": 1,
+            "g_password": "none",
             "shorthand": "ORD",
             "maps":
             [

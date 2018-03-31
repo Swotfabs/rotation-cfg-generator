@@ -14,7 +14,7 @@ This section explains the different parts of the json configuration file
     "commands":
     {
         // These are default values that will be added to each command should they not be present
-        "defaults":
+        "default_attributes":
         {
             "server-command": false,
             "requires-set": false
@@ -92,7 +92,7 @@ This section explains the different parts of the json configuration file
         }
     },
     // This holds the different rotation profiles, each profile will be a rotation the server can be set to
-    "rotations":
+    "profiles":
     {
         // Each profile will have a name
         "large":
