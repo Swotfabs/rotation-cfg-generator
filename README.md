@@ -8,103 +8,24 @@ You must create a rotations.json file as the script will be expecting that.
 ### Json File Format
 This section explains the different parts of the json configuration file
 
-```
+```json
 {
-    // This section defines what commands the configuration generator will be able to interpret
-    "commands":
-    {
-        // These are default values that will be added to each command should they not be present
-        "default_attributes":
-        {
-            "server-command": false,
-            "requires-set": false
-        },
-        // Each command's name is that which it will be in the cfg line
-        "map":
-        {
-            // The priority value is where in the cfg line it needs to be, lower priority coming first
-            "priority": 2,
-
-            // The string value determines how the cfg command will be inserted.
-            // The {} is where the value will be inserted.
-            "string": "map \"{}\"",
-
-            // This sets whether this command has a default value.
-            // This will either be true, false, or a value.
-            // You can obviously change these as desired.
-            // false means the command has no default value
-            "default": false
-        },
-        "g_authenticity":
-        {
-            "priority": 1,
-            "string": "g_authenticity \"{}\"",
-            "default": false
-        },
-        "mbmode":
-        {
-            "priority": 1,
-            "string": "mbmode \"{}\"",
-            "default": false
-        },
-        "fraglimit":
-        {
-            "priority": 3,
-            "string": "fraglimit \"{}\"",
-
-            // A value means that the command has a default, and it is that value.
-            // For example, if fraglimit is not defined in one of the maps below it will be set to 12.
-            "default": 12
-        },
-        "map_restart_mb":
-        {
-            "priority": "end",
-            "string": "map_restart_mb",
-
-            // True denotes a command that has no value and will either exist or not exist
-            "default": true
-        },
-
-        // There are some commands which are run before a rotation starts,
-        // these are donated by the server-command variable being true.
-        "sv_hostname":
-        {
-            "server-command": true,
-
-            // This denotes whether set has to precede the command
-            "requires-set": true,
-            "string": "set sv_hostname \"{}\"",
-            "default": "^4/^5/ ^7Resurgence RTV^4/RTM"
-        },
-        "g_hidehudfromspecs":
-        {
-            "server-command": true,
-            "requires-set": true,
-            "string": "set g_hidehudfromspecs \"{}\"",
-            "default": 1
-        },
-        "g_password":
-        {
-            "server-command": true,
-            "requires-set": true,
-            "string": "set g_password \"{}\"",
-            "default": "none"
-        }
-    },
-    // This holds the different rotation profiles, each profile will be a rotation the server can be set to
     "profiles":
     {
-        // Each profile will have a name
+        "_description": "Here you put the different rotations for your server",
+
         "large":
         {
-            // The shorthand is the name of the vstr that this rotation will have
-            "shorthand": "ORD",
+            "_description": "These are the settings you want when the server switches to this rotation",
+            "_note": "maps is a list of the maps on the rotation",
 
-            // This is a list of maps, in order, in this rotation.
+            "sv_hostname": "^4/^5/ ^7Resurgence RTV^4/RTM",
+            "g_hidehudfromspecs": 1,
+            "g_password": "none",
+            "shorthand": "ORD",
             "maps":
             [
                 {
-                    // Here go all of the settings for this map.
                     "map": "mb2_corellia",
                     "g_authenticity": 0,
                     "mbmode": 0,
@@ -119,6 +40,96 @@ This section explains the different parts of the json configuration file
                     "map_restart_mb": true
                 }
             ]
+        }
+    },
+    "defaults":
+    {
+        "default_commands":
+        {
+            "_description": "Commands added to every map if not overwritten. Defaults used",
+            "commands":
+            [
+                "roundlimit", "fraglimit"
+            ]
+        },
+        "default_attributes":
+        {
+            "_description": "Attributes added to every command if not overwritten",
+        }
+    },
+    "commands":
+    {
+        "_description": "A list of commands supported by the generator.",
+        "_note": "default_value refers to the default value of the command. If it is false there is none.",
+        "map":
+        {
+            "_description": "Changes the map",
+            "priority": 2,
+            "string": "map \"{}\"",
+
+            "default_value": false
+        },
+        "g_authenticity":
+        {
+            "_description": "In conjuntion with mbmode changes the mode of the game (Open, Semi-FA, FA)",
+            "priority": 1,
+            "string": "g_authenticity \"{}\"",
+
+            "default_value": false
+        },
+        "mbmode":
+        {
+            "_description": "In conjuntion with mbmode changes the mode of the game (Open, Semi-FA, FA)",
+            "_note": "This will be used instead of the map command",
+            "priority": 1,
+            "string": "mbmode \"{}\" \"{}\"",
+
+            "default_value": false
+        },
+        "roundlimit":
+        {
+            "_description": "When the total rounds reaches this amount, the map ends. Ties may happen",
+            "priority": 3,
+            "string": "roundlimit \"{}\"",
+
+            "default_value": 12
+        },
+        "fraglimit":
+        {
+            "_description": "If a team reaches this amount of won rounds, it wins the map",
+            "priority": 3,
+            "string": "fraglimit \"{}\"",
+
+            "default_value": 12
+        },
+        "map_restart_mb":
+        {
+            "_description": "Restarts the map",
+            "priority": "end",
+            "string": "map_restart_mb",
+
+            "default_value": true
+        },
+        "sv_hostname":
+        {
+            "_description": "Changes the name of the server",
+            "string": "set sv_hostname \"{}\"",
+
+            "default_value": "^4/^5/ ^7Resurgence RTV^4/RTM"
+        },
+        "g_hidehudfromspecs":
+        {
+            "_description": "Spectators cannot see the HUD of others",
+            "string": "set g_hidehudfromspecs \"{}\"",
+
+            "default_value": 1
+        },
+        "g_password":
+        {
+            "_description": "Sets the password players need to join the server",
+            "string": "set g_password \"{}\"",
+
+            "default_value": "none"
         }
     }
 }
