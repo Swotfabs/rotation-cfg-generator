@@ -8,8 +8,8 @@ def load(path):
     return None
 
 
-def create_command_string(command, command_information, default_attributes):
-    """This takes creates the command string that will go in the .cfg
+def construct_command_string(command, command_information, default_attributes):
+    """This takes creates the string that represents a command and returns it
 
     Arguments:
     command: a python dictionary of the command to create and its value.
@@ -21,26 +21,37 @@ def create_command_string(command, command_information, default_attributes):
     default_attributes: a python dictionary of the default attributes
         of every command.
         This is found in
-            rotations.commands.default_attributes
+            rotations.defaults.default_attributes
     """
     return None
 
 
-def create_map_line(index, shorthand, commands):
-    """This creates the string correstponding to a map.
+def construct_map_line(profile, map_index):
+    """This creates the string representing a map and returns it
 
-    index: The index of where we are in the rotation
-    shorthand: the shorthand of the rotation profile we are working with
-    commands: a list of python dictionaries containing the priority of
-        the command and the command string.
+    profile: What profile we are working with
+        This is __profile__name for rotations.profiles.__profile__name
+        Example: "large"
+    map_index: The index of where we are in the rotation
+        This is the index for rotations.profiles.__profile__name.map[index]
+    """
+    return None
+
+
+def construct_profile_line(profile):
+    """ This creates the line giving the profile information and returns it
+
+    profile: What profile we are working with
+        This is __profile__name for rotations.profiles.__profile__name
     """
     return None
 
 
 def create_file(path):
     """ This creates rotations.cfg which you can append to your server.cfg
-    Note it will OVERWRITE andy rotations.cfg already in the folder
-    specificed by path"""
+    Note it will OVERWRITE and rotations.cfg already in the folder
+    specificed by path
+    """
     pass
 
 
