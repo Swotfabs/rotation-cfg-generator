@@ -15,6 +15,7 @@ def construct_command_string(command, command_information, default_attributes):
     command: a python dictionary of the command to create and its value.
         This is found in
             rotations.profiles.__profile__name.map[index].<command>
+        Ex: {"fraglimit": 12}
     command_information: a python dictionary of the information of the command.
         This is found in
             rotations.commands.<command>
