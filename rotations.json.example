@@ -6,27 +6,27 @@
         "large":
         {
             "_description": "These are the settings you want when the server switches to this rotation",
-            "_note": "maps is a list of the maps on the rotation",
+            "_note": "maps is the list of the maps on the rotation",
 
-            "sv_hostname": "^4/^5/ ^7Resurgence RTV^4/RTM",
-            "g_hidehudfromspecs": 1,
+            "sv_hostname": "€€€€€€€ ^4/^5/ ^7RESURGENCE rtv^4/^5/^7rtm",
+            "g_hidehudfromspecs": 0,
             "g_password": "none",
             "shorthand": "ORD",
             "maps":
             [
                 {
                     "map": "mb2_corellia",
-                    "g_authenticity": 0,
                     "mbmode": 0,
                     "fraglimit": 12,
-                    "map_restart_mb": true
+                    "g_allowedVillainClasses": 0,
+                    "g_allowedHeroclasses": 0
                 },
                 {
                     "map": "mb2_lunarbase",
-                    "g_authenticity": 0,
                     "mbmode": 0,
                     "fraglimit": 12,
-                    "map_restart_mb": true
+                    "g_allowedVillainClasses": 0,
+                    "g_allowedHeroclasses": 0
                 }
             ]
         }
@@ -38,7 +38,7 @@
             "_description": "Commands added to every map if not overwritten. Defaults used",
             "commands":
             [
-                "roundlimit", "fraglimit"
+                "roundlimit", "fraglimit", "g_authenticity", "g_allowedVillainClasses", "g_allowedHeroclasses"
             ]
         },
         "default_attributes":
@@ -50,19 +50,21 @@
     {
         "_description": "A list of commands supported by the generator.",
         "_note": "default_value refers to the default value of the command. If it is false there is none.",
-        "map":
-        {
-            "_description": "Changes the map",
-            "priority": 2,
-            "string": "map \"{}\"",
-
-            "default_value": false
-        },
+        "_note-2": "priority refers to what order the comands should be put in, lowest first",
         "g_authenticity":
         {
             "_description": "In conjuntion with mbmode changes the mode of the game (Open, Semi-FA, FA)",
-            "priority": 1,
+            "_note": "This currently does not seem to be in use",
+            "priority": 0,
             "string": "g_authenticity \"{}\"",
+
+            "default_value": false
+        },
+        "map":
+        {
+            "_description": "Changes the map",
+            "priority": 1,
+            "string": "map \"{}\"",
 
             "default_value": false
         },
@@ -70,18 +72,10 @@
         {
             "_description": "In conjuntion with mbmode changes the mode of the game (Open, Semi-FA, FA)",
             "_note": "This will be used instead of the map command",
-            "priority": 1,
+            "priority": 2,
             "string": "mbmode \"{}\" \"{}\"",
 
-            "default_value": false
-        },
-        "roundlimit":
-        {
-            "_description": "When the total rounds reaches this amount, the map ends. Ties may happen",
-            "priority": 3,
-            "string": "roundlimit \"{}\"",
-
-            "default_value": 12
+            "default_value": 0
         },
         "fraglimit":
         {
@@ -91,10 +85,34 @@
 
             "default_value": 12
         },
+        "roundlimit":
+        {
+            "_description": "When the total rounds reaches this amount, the map ends. Ties may happen",
+            "priority": 4,
+            "string": "roundlimit \"{}\"",
+
+            "default_value": 12
+        },
+        "g_allowedVillainClasses":
+        {
+            "_description": "This restricts what classes imperials can play. 0 is no restrictions",
+            "priority": 5,
+            "string": "set g_allowedVillainClasses \"{}\"",
+
+            "default_value": 0
+        },
+        "g_allowedHeroclasses":
+        {
+            "_description": "This restricts what classes rebels can play. 0 is no restrictions",
+            "priority": 6,
+            "string": "set g_allowedHeroclasses \"{}\"",
+
+            "default_value": 0
+        },
         "map_restart_mb":
         {
             "_description": "Restarts the map",
-            "priority": "end",
+            "priority": 7,
             "string": "map_restart_mb",
 
             "default_value": true
