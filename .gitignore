@@ -108,4 +108,5 @@ venv.bak/
 *.sublime-workspace
 
 # Project Specific Files
-rotations.json
+defaults.json
+profiles.json

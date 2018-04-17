@@ -1,0 +1,72 @@
+{
+    "commands":
+    {
+        "_description": "A list of commands supported by the generator.",
+        "_note": "priority refers to what order the comands should be put in, lowest first",
+        "g_authenticity":
+        {
+            "_description": "In conjuntion with mbmode changes the mode of the game (Open, Semi-FA, FA)",
+            "_note": "This currently does not seem to be in use",
+            "priority": 0,
+            "string": "g_authenticity \"{}\""
+        },
+        "map":
+        {
+            "_description": "Changes the map",
+            "priority": 1,
+            "string": "map \"{}\""
+        },
+        "mbmode":
+        {
+            "_description": "In conjuntion with mbmode changes the mode of the game (Open, Semi-FA, FA)",
+            "_note": "This will be used instead of the map command",
+            "priority": 2,
+            "string": "mbmode \"{}\" \"{}\""
+        },
+        "fraglimit":
+        {
+            "_description": "If a team reaches this amount of won rounds, it wins the map",
+            "priority": 3,
+            "string": "fraglimit \"{}\""
+        },
+        "roundlimit":
+        {
+            "_description": "When the total rounds reaches this amount, the map ends. Ties may happen",
+            "priority": 4,
+            "string": "roundlimit \"{}\""
+        },
+        "g_allowedVillainClasses":
+        {
+            "_description": "This restricts what classes imperials can play. 0 is no restrictions",
+            "priority": 5,
+            "string": "set g_allowedVillainClasses \"{}\""
+        },
+        "g_allowedHeroclasses":
+        {
+            "_description": "This restricts what classes rebels can play. 0 is no restrictions",
+            "priority": 6,
+            "string": "set g_allowedHeroclasses \"{}\""
+        },
+        "map_restart_mb":
+        {
+            "_description": "Restarts the map",
+            "priority": 7,
+            "string": "map_restart_mb"
+        },
+        "sv_hostname":
+        {
+            "_description": "Changes the name of the server",
+            "string": "set sv_hostname \"{}\""
+        },
+        "g_hidehudfromspecs":
+        {
+            "_description": "Spectators cannot see the HUD of others",
+            "string": "set g_hidehudfromspecs \"{}\""
+        },
+        "g_password":
+        {
+            "_description": "Sets the password players need to join the server",
+            "string": "set g_password \"{}\""
+        }
+    }
+}

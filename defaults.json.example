@@ -1,0 +1,33 @@
+{
+    "defaults":
+    {
+        "default_commands":
+        {
+            "_description": "Commands added to every map if not overwritten. Default values used",
+            "commands":
+            [
+                "roundlimit", "fraglimit", "g_authenticity", "g_allowedVillainClasses", "g_allowedHeroclasses"
+            ]
+        },
+        "default_attributes":
+        {
+            "_description": "Attributes added to every command if not overwritten"
+        },
+        "commands":
+        {
+            "_description": "If a map specifies a command with no value, these will be used",
+            "_note": "If the command does not have a default value, it is marked as null",
+            "g_authenticity": null,
+            "map": null,
+            "mbmode": 0,
+            "fraglimit": 12,
+            "roundlimit": 12,
+            "g_allowedVillainClasses": 0,
+            "g_allowedHeroclasses": 0,
+            "map_restart_mb": true,
+            "sv_hostname": "^4/^5/ ^7Resurgence RTV^4/RTM",
+            "g_hidehudfromspecs": 1,
+            "g_password": "none"
+        }
+    }
+}

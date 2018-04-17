@@ -1,0 +1,34 @@
+{
+    "profiles":
+    {
+        "_description": "Here you put the different rotations for your server",
+
+        "large":
+        {
+            "_description": "These are the settings you want when the server switches to this rotation",
+            "_note": "maps is the list of the maps on the rotation",
+
+            "sv_hostname": "€€€€€€€ ^4/^5/ ^7RESURGENCE rtv^4/^5/^7rtm",
+            "g_hidehudfromspecs": 0,
+            "g_password": "none",
+            "shorthand": "ORD",
+            "maps":
+            [
+                {
+                    "map": "mb2_corellia",
+                    "mbmode": 0,
+                    "fraglimit": 12,
+                    "g_allowedVillainClasses": 0,
+                    "g_allowedHeroclasses": 0
+                },
+                {
+                    "map": "mb2_lunarbase",
+                    "mbmode": 0,
+                    "fraglimit": 12,
+                    "g_allowedVillainClasses": 0,
+                    "g_allowedHeroclasses": 0
+                }
+            ]
+        }
+    }
+}
