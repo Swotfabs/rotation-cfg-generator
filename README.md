@@ -5,8 +5,10 @@ A small utitility to create the cfg commands necessary for a Movie Battle II rot
 When you download the repository there will be a rotations.json.examples file.
 You must create a rotations.json file as the script will be expecting that.
 
-### Json File Format
-This section explains the different parts of the json configuration file
+### Profiles
+Here you describe the various rotation profiles you have and the maps in them.
+The program looks for a profiles.json.
+profiles.json.example is provided as a working example you can copy and edit.
 
 ```json
 {
@@ -17,119 +19,70 @@ This section explains the different parts of the json configuration file
         "large":
         {
             "_description": "These are the settings you want when the server switches to this rotation",
-            "_note": "maps is a list of the maps on the rotation",
+            "_note": "maps is the list of the maps on the rotation",
 
-            "sv_hostname": "^4/^5/ ^7Resurgence RTV^4/RTM",
-            "g_hidehudfromspecs": 1,
+            "sv_hostname": "€€€€€€€ ^4/^5/ ^7RESURGENCE rtv^4/^5/^7rtm",
+            "g_hidehudfromspecs": 0,
             "g_password": "none",
             "shorthand": "ORD",
             "maps":
             [
                 {
                     "map": "mb2_corellia",
-                    "g_authenticity": 0,
                     "mbmode": 0,
                     "fraglimit": 12,
-                    "map_restart_mb": true
+                    "g_allowedVillainClasses": 0,
+                    "g_allowedHeroclasses": 0
                 },
                 {
                     "map": "mb2_lunarbase",
-                    "g_authenticity": 0,
                     "mbmode": 0,
                     "fraglimit": 12,
-                    "map_restart_mb": true
+                    "g_allowedVillainClasses": 0,
+                    "g_allowedHeroclasses": 0
                 }
             ]
         }
-    },
+    }
+}
+```
+
+### Defaults
+Here you describe the defaults of commands if you do not provide a value.
+The program looks for a defaults.json.
+defaults.json.example is provided as a working example you can copy and edit.
+
+```json
+{
     "defaults":
     {
         "default_commands":
         {
-            "_description": "Commands added to every map if not overwritten. Defaults used",
+            "_description": "Commands added to every map if not overwritten. Default values used",
             "commands":
             [
-                "roundlimit", "fraglimit"
+                "roundlimit", "fraglimit", "g_authenticity", "g_allowedVillainClasses", "g_allowedHeroclasses"
             ]
         },
         "default_attributes":
         {
-            "_description": "Attributes added to every command if not overwritten",
-        }
-    },
-    "commands":
-    {
-        "_description": "A list of commands supported by the generator.",
-        "_note": "default_value refers to the default value of the command. If it is false there is none.",
-        "map":
-        {
-            "_description": "Changes the map",
-            "priority": 2,
-            "string": "map \"{}\"",
-
-            "default_value": false
+            "_description": "Attributes added to every command if not overwritten"
         },
-        "g_authenticity":
+        "commands":
         {
-            "_description": "In conjuntion with mbmode changes the mode of the game (Open, Semi-FA, FA)",
-            "priority": 1,
-            "string": "g_authenticity \"{}\"",
-
-            "default_value": false
-        },
-        "mbmode":
-        {
-            "_description": "In conjuntion with mbmode changes the mode of the game (Open, Semi-FA, FA)",
-            "_note": "This will be used instead of the map command",
-            "priority": 1,
-            "string": "mbmode \"{}\" \"{}\"",
-
-            "default_value": false
-        },
-        "roundlimit":
-        {
-            "_description": "When the total rounds reaches this amount, the map ends. Ties may happen",
-            "priority": 3,
-            "string": "roundlimit \"{}\"",
-
-            "default_value": 12
-        },
-        "fraglimit":
-        {
-            "_description": "If a team reaches this amount of won rounds, it wins the map",
-            "priority": 3,
-            "string": "fraglimit \"{}\"",
-
-            "default_value": 12
-        },
-        "map_restart_mb":
-        {
-            "_description": "Restarts the map",
-            "priority": "end",
-            "string": "map_restart_mb",
-
-            "default_value": true
-        },
-        "sv_hostname":
-        {
-            "_description": "Changes the name of the server",
-            "string": "set sv_hostname \"{}\"",
-
-            "default_value": "^4/^5/ ^7Resurgence RTV^4/RTM"
-        },
-        "g_hidehudfromspecs":
-        {
-            "_description": "Spectators cannot see the HUD of others",
-            "string": "set g_hidehudfromspecs \"{}\"",
-
-            "default_value": 1
-        },
-        "g_password":
-        {
-            "_description": "Sets the password players need to join the server",
-            "string": "set g_password \"{}\"",
-
-            "default_value": "none"
+            "_description": "If a map specifies a command with no value, these will be used",
+            "_note": "If the command does not have a default value, it is marked as null",
+            "g_authenticity": null,
+            "map": null,
+            "mbmode": 0,
+            "fraglimit": 12,
+            "roundlimit": 12,
+            "g_allowedVillainClasses": 0,
+            "g_allowedHeroclasses": 0,
+            "map_restart_mb": true,
+            "sv_hostname": "^4/^5/ ^7Resurgence RTV^4/RTM",
+            "g_hidehudfromspecs": 1,
+            "g_password": "none"
         }
     }
 }
