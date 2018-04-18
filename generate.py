@@ -8,21 +8,28 @@ def load(path):
     return None
 
 
-def construct_command_string(command, command_information, default_attributes):
-    """This takes creates the string that represents a command and returns it
+def construct_command_string(command, command_information,
+                             default_attributes, default_value):
+    """This takes creates the string that represents a command and returns it.
+    The string is just the command and the values, it does not
+        have the ; that separates them.
 
     Arguments:
     command: a python dictionary of the command to create and its value.
         This is found in
-            rotations.profiles.__profile__name.map[index].<command>
+            [profiles.json] profiles.__profile__name.map[index].<command>
         Ex: {"fraglimit": 12}
     command_information: a python dictionary of the information of the command.
         This is found in
-            rotations.commands.<command>
-    default_attributes: a python dictionary of the default attributes
+            [command_information.json] commands.__command__
+    default_attributes: a python dictionary listing the default attributes
         of every command.
         This is found in
-            rotations.defaults.default_attributes
+            [defaults.json] defaults.default_attributes
+    default_value
+        The default value of the command, if it has one.
+        This is found in
+            [defaults.json] defaults.commands.__command__
     """
     return None
 
