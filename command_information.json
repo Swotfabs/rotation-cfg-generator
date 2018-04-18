@@ -18,7 +18,7 @@
         },
         "mbmode":
         {
-            "_description": "In conjuntion with mbmode changes the mode of the game (Open, Semi-FA, FA)",
+            "_description": "In conjuntion with g_authenticity changes the mode of the game (Open, Semi-FA, FA)",
             "_note": "This will be used instead of the map command",
             "priority": 2,
             "string": "mbmode \"{}\" \"{}\""
