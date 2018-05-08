@@ -9,7 +9,7 @@ def load(path):
 
 
 def construct_command_string(command, command_information,
-                             default_attributes, default_value):
+                             default_value):
     """This takes creates the string that represents a command and returns it.
     The string is just the command and the values, it does not
         have the ; that separates them.
@@ -22,10 +22,6 @@ def construct_command_string(command, command_information,
     command_information: a python dictionary of the information of the command.
         This is found in
             [command_information.json] commands.__command__
-    default_attributes: a python dictionary listing the default attributes
-        of every command.
-        This is found in
-            [defaults.json] defaults.default_attributes
     default_value
         The default value of the command, if it has one.
         This is found in

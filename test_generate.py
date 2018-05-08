@@ -18,21 +18,18 @@ class TestConstructCommandString(TestCase):
                 "string": "fraglimit \"{}\""
             }
         }
-        self.default_attributes = {}
         self.default_value = 12
 
     def test_basic(self):
         command_string = generate.construct_command_string(
-            self.command, self.command_information, self.default_attributes,
-            self.default_value)
+            self.command, self.command_information, self.default_value)
         self.assertEqual(command_string, "fraglimit 12")
 
     def test_default_value(self):
         self.command = {"fraglimit"}
         self.default_value = 15
         command_string = generate.construct_command_string(
-            self.command, self.command_information, self.default_attributes,
-            self.default_value)
+            self.command, self.command_information, self.default_value)
         self.assertEqual(command_string, "fraglimit 15")
 
     def test_mbmode(self):
@@ -55,16 +52,14 @@ class TestConstructCommandString(TestCase):
         }
         self.default = 0
         command_string = generate.construct_command_string(
-            self.command, self.command_information, self.default_attributes,
-            self.default_value)
+            self.command, self.command_information, self.default_value)
         self.assertEquals(command_string, "mbmode 0 mb2_corellia")
 
     def test_malformed_command(self):
         self.command = "Malformed"
         with self.assertRaises(ValueError) as ve:
             generate.construct_command_string(
-                self.command, self.command_information,
-                self.default_attributes, self.default_value)
+                self.command, self.command_information, self.default_value)
 
         exception_raised = ve.exception
         self.assertEqual(exception_raised, "command has to be a dictionary")
@@ -73,22 +68,10 @@ class TestConstructCommandString(TestCase):
         self.command_information = "Malformed"
         with self.assertRaises(ValueError) as ve:
             generate.construct_command_string(
-                self.command, self.command_information,
-                self.default_attributes, self.default_value)
+                self.command, self.command_information, self.default_value)
 
         exception_raised = ve.exception
         self.assertEqual(exception_raised, "command_information has "
-                         "to be a dictionary")
-
-    def test_malformed_default_attributes(self):
-        self.default_attributes = "Malformed"
-        with self.assertRaises(ValueError) as ve:
-            generate.construct_command_string(
-                self.command, self.command_information,
-                self.default_attributes, self.default_value)
-
-        exception_raised = ve.exception
-        self.assertEqual(exception_raised, "default_attributes has "
                          "to be a dictionary")
 
     def test_malformed_default_value(self):
@@ -97,8 +80,7 @@ class TestConstructCommandString(TestCase):
         self.default_value = "Malformed"
         with self.assertRaises(ValueError) as ve:
             generate.construct_command_string(
-                self.command, self.command_information,
-                self.default_attributes, self.default_value)
+                self.command, self.command_information, self.default_value)
 
         exception_raised = ve.exception
         self.assertEqual(exception_raised, "default_value has "

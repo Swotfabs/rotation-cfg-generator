@@ -9,10 +9,6 @@
                 "roundlimit", "fraglimit", "g_authenticity", "g_allowedVillainClasses", "g_allowedHeroclasses"
             ]
         },
-        "default_attributes":
-        {
-            "_description": "Attributes added to every command if not overwritten"
-        },
         "commands":
         {
             "_description": "If a map specifies a command with no value, these will be used",
