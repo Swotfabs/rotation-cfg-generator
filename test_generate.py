@@ -53,7 +53,7 @@ class TestConstructCommandString(TestCase):
         self.default = 0
         command_string = generate.construct_command_string(
             self.command, self.command_information, self.default_value)
-        self.assertEquals(command_string, "mbmode 0 mb2_corellia")
+        self.assertEqual(command_string, "mbmode 0 mb2_corellia")
 
     def test_malformed_command(self):
         self.command = "Malformed"
