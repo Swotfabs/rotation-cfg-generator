@@ -1,7 +1,6 @@
 """These are unittests to test the functions in generate.py"""
 
 from unittest import TestCase
-from unittest import main as runTests
 import generate
 
 
@@ -89,4 +88,7 @@ class TestConstructCommandString(TestCase):
 
 
 if __name__ == "__main__":
-    runTests()
+    """This script can not be run directly as it requires something from its
+    parent directory
+    """
+    pass
