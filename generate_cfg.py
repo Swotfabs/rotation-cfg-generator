@@ -16,16 +16,21 @@ def construct_command_string(command, command_information,
 
     Arguments:
     command: a python dictionary of the command to create and its value.
-        This is found in
-            [profiles.json] profiles.__profile__name.map[index].<command>
-        Ex: {"fraglimit": 12}
+        For example:
+            {"fraglimit": 12}
     command_information: a python dictionary of the information of the command.
-        This is found in
-            [command_information.json] commands.__command__
+        For example:
+            "fraglimit":
+                {
+                    "_description": ("If a team reaches this amount "
+                                     "of won rounds, it wins the map"),
+                    "priority": 3,
+                    "string": "fraglimit {}"
+                }
     default_value
         The default value of the command, if it has one.
-        This is found in
-            [defaults.json] defaults.commands.__command__
+        For example:
+            15
     """
     try:
         command.keys()
