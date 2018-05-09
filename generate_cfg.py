@@ -45,6 +45,8 @@ def construct_command_string(command, command_information,
         except KeyError as e:
             if "map" in str(e):
                 raise ValueError("mbmode needs a map")
+        except TypeError as e:
+            raise TypeError("mbmode defaults must be in a dictionary")
         return command_information['mbmode']['string'].format(
             command['mbmode'], command['map'])
 

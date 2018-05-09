@@ -79,6 +79,28 @@ class TestConstructCommandString(TestCase):
             self.command, self.command_information, self.default_value)
         self.assertEqual(command_string, "mbmode 0 mb2_corellia")
 
+    def test_mbmode_bad_default_int(self):
+        self.command = {"map": None, "mbmode": None}
+        self.command_information = self.mbmode_information
+        self.default_value = 0
+        with self.assertRaises(TypeError) as ve:
+            generate_cfg.construct_command_string(
+                self.command, self.command_information, self.default_value)
+        exception_raised = ve.exception
+        self.assertEqual(str(exception_raised),
+                         "mbmode defaults must be in a dictionary")
+
+    def test_mbmode_bad_default_string(self):
+        self.command = {"map": None, "mbmode": None}
+        self.command_information = self.mbmode_information
+        self.default_value = "mb2_corellia"
+        with self.assertRaises(TypeError) as ve:
+            generate_cfg.construct_command_string(
+                self.command, self.command_information, self.default_value)
+        exception_raised = ve.exception
+        self.assertEqual(str(exception_raised),
+                         "mbmode defaults must be in a dictionary")
+
     def test_mbmode_no_map(self):
         self.command = {"mbmode": 0}
         self.command_information = self.mbmode_information
@@ -86,7 +108,6 @@ class TestConstructCommandString(TestCase):
         with self.assertRaises(ValueError) as ve:
             generate_cfg.construct_command_string(
                 self.command, self.command_information, self.default_value)
-
         exception_raised = ve.exception
         self.assertEqual(str(exception_raised),
                          "mbmode needs a map")
@@ -96,7 +117,6 @@ class TestConstructCommandString(TestCase):
         with self.assertRaises(TypeError) as ve:
             generate_cfg.construct_command_string(
                 self.command, self.command_information, self.default_value)
-
         exception_raised = ve.exception
         self.assertEqual(str(exception_raised),
                          "command has to be a dictionary")
@@ -106,7 +126,6 @@ class TestConstructCommandString(TestCase):
         with self.assertRaises(TypeError) as ve:
             generate_cfg.construct_command_string(
                 self.command, self.command_information, self.default_value)
-
         exception_raised = ve.exception
         self.assertEqual(str(exception_raised), "command_information has "
                          "to be a dictionary")
@@ -116,7 +135,6 @@ class TestConstructCommandString(TestCase):
         with self.assertRaises(TypeError) as ve:
             generate_cfg.construct_command_string(
                 self.command, self.command_information, self.default_value)
-
         exception_raised = ve.exception
         self.assertIn("Too many commands", str(exception_raised))
 
