@@ -38,18 +38,22 @@ def construct_command_string(command, command_information,
     if 'mbmode' in command.keys():
         # mbmode is special
         try:
-            return command_information['mbmode']['string'].format(
-                command['mbmode'], command['map'])
+            if command['mbmode'] is None:
+                command['mbmode'] = default_value['mbmode']
+            if command['map'] is None:
+                command['map'] = default_value['map']
         except KeyError as e:
             if "map" in str(e):
                 raise ValueError("mbmode needs a map")
+        return command_information['mbmode']['string'].format(
+            command['mbmode'], command['map'])
 
     if len(command.keys()) > 1:
         raise TypeError("Too many commands, {}".format(
             [key for key in command.keys()]))
 
     command_name, command_value = list(command.items())[0]
-    if not command_value:
+    if command_value is None:
         command_value = default_value
     try:
         return command_information[command_name]['string'].format(
