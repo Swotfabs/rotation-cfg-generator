@@ -27,7 +27,31 @@ def construct_command_string(command, command_information,
         This is found in
             [defaults.json] defaults.commands.__command__
     """
-    return None
+    try:
+        command.keys()
+    except AttributeError as e:
+        if "'keys'" in str(e):
+            raise TypeError("command has to be a dictionary")
+        else:
+            raise
+
+    if 'mbmode' in command.keys():
+        # mbmode is special
+        return command_information['mbmode']['string'].format(
+            command['mbmode'], command['map'])
+
+    if len(command.keys()) > 1:
+        raise TypeError("Too many commands, {}".format(
+            [key for key in command.keys()]))
+
+    command_name, command_value = list(command.items())[0]
+    if not command_value:
+        command_value = default_value
+    try:
+        return command_information[command_name]['string'].format(
+            command_value)
+    except Exception:
+        raise TypeError("command_information has to be a dictionary")
 
 
 def construct_map_line(profile, map_index):

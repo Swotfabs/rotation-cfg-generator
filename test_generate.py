@@ -23,17 +23,17 @@ class TestConstructCommandString(TestCase):
     def test_basic(self):
         command_string = generate.construct_command_string(
             self.command, self.command_information, self.default_value)
-        self.assertEqual(command_string, "fraglimit 12")
+        self.assertEqual(command_string, "fraglimit \"12\"")
 
     def test_default_value(self):
-        self.command = {"fraglimit"}
+        self.command = {"fraglimit": None}
         self.default_value = 15
         command_string = generate.construct_command_string(
             self.command, self.command_information, self.default_value)
-        self.assertEqual(command_string, "fraglimit 15")
+        self.assertEqual(command_string, "fraglimit \"15\"")
 
     def test_mbmode(self):
-        self.command = {"map": "mb2_corellia", "mbmode": "0"}
+        self.command = {"map": "mb2_corellia", "mbmode": 0}
         self.command_information = {
             "map":
             {
@@ -47,44 +47,42 @@ class TestConstructCommandString(TestCase):
                                  "the mode of the game (Open, Semi-FA, FA)"),
                 "_note": "This will be used instead of the map command",
                 "priority": 2,
-                "string": "mbmode \"{}\" \"{}\""
+                "string": "mbmode \"{} {}\""
             }
         }
         self.default = 0
         command_string = generate.construct_command_string(
             self.command, self.command_information, self.default_value)
-        self.assertEqual(command_string, "mbmode 0 mb2_corellia")
+        self.assertEqual(command_string, "mbmode \"0 mb2_corellia\"")
 
     def test_malformed_command(self):
         self.command = "Malformed"
-        with self.assertRaises(ValueError) as ve:
+        with self.assertRaises(TypeError) as ve:
             generate.construct_command_string(
                 self.command, self.command_information, self.default_value)
 
         exception_raised = ve.exception
-        self.assertEqual(exception_raised, "command has to be a dictionary")
+        self.assertEqual(str(exception_raised),
+                         "command has to be a dictionary")
 
     def test_malformed_command_information(self):
         self.command_information = "Malformed"
-        with self.assertRaises(ValueError) as ve:
+        with self.assertRaises(TypeError) as ve:
             generate.construct_command_string(
                 self.command, self.command_information, self.default_value)
 
         exception_raised = ve.exception
-        self.assertEqual(exception_raised, "command_information has "
+        self.assertEqual(str(exception_raised), "command_information has "
                          "to be a dictionary")
 
-    def test_malformed_default_value(self):
-        # This only tests whether the default value is not a string
-        # Further testing of other types might be needed
-        self.default_value = "Malformed"
-        with self.assertRaises(ValueError) as ve:
+    def test_too_many_commands(self):
+        self.command = {"roundlimit": 12, "fraglimit": 15}
+        with self.assertRaises(TypeError) as ve:
             generate.construct_command_string(
                 self.command, self.command_information, self.default_value)
 
         exception_raised = ve.exception
-        self.assertEqual(exception_raised, "default_value has "
-                         "to be a number")
+        self.assertIn("Too many commands", str(exception_raised))
 
     def tearDown(self):
         pass
