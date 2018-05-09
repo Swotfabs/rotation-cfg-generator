@@ -54,6 +54,33 @@ class TestConstructCommandString(TestCase):
             self.command, self.command_information, self.default_value)
         self.assertEqual(command_string, "mbmode 0 mb2_corellia")
 
+    def test_mbmode_no_map(self):
+        self.command = {"mbmode": 0}
+        self.command_information = {
+            "map":
+            {
+                "_description": "Changes the map",
+                "priority": 1,
+                "string": "map {}"
+            },
+            "mbmode":
+            {
+                "_description": ("In conjuntion with g_authenticity changes "
+                                 "the mode of the game (Open, Semi-FA, FA)"),
+                "_note": "This will be used instead of the map command",
+                "priority": 2,
+                "string": "mbmode {} {}"
+            }
+        }
+        self.default = 0
+        with self.assertRaises(ValueError) as ve:
+            generate_cfg.construct_command_string(
+                self.command, self.command_information, self.default_value)
+
+        exception_raised = ve.exception
+        self.assertEqual(str(exception_raised),
+                         "mbmode needs a map")
+
     def test_malformed_command(self):
         self.command = "Malformed"
         with self.assertRaises(TypeError) as ve:
